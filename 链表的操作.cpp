@@ -1,14 +1,13 @@
 #include"Configer.h"
 /*将一个链表中的奇数放在偶数前面,然后将奇数序列分别偶数序列逆序*/
 
-struct Node
+struct node
 {
-	Node(int num = 0)
-		:data(num), next(NULL)
-	{}
 	int data;
 	Node* next;
 }; 
+typedef node Node;
+
 void Inverse(Node*& Head, Node*& Tail)
 {
 	if (Head != NULL && Tail != NULL)
@@ -39,16 +38,14 @@ void Answer(Node*& list)
 {
 	Node *headLeft = NULL, *tailLeft = NULL, 
 		*headRight = NULL, *tailRight = NULL,*tmp = list;
-	bool sign[2] = { 1,1 };
 	while (tmp)
 	{
 		if (tmp->data % 2 == 1)
 		{
-			if (sign[0])
+			if (headLeft == NULL)
 			{
 				headLeft = tmp;
 				tailLeft = headLeft;
-				sign[0] = false;
 			}
 			else
 			{
@@ -58,11 +55,10 @@ void Answer(Node*& list)
 		}
 		else
 		{
-			if (sign[1])
+			if (headRight == NULL)
 			{
 				headRight = tmp;
 				tailRight = headRight;
-				sign[1] = false;
 			}
 			else
 			{
@@ -83,23 +79,3 @@ void Answer(Node*& list)
 		list = headRight;
 }
 
-int main()
-{
-	Node List[10];
-	for (int i = 0; i < 10; ++i)
-	{
-		List[i].data = i;
-	}
-	for (int i = 0; i < 9; ++i)
-	{
-		List[i].next = List + i + 1;
-	}
-	Node* p = &List[0];
-	Answer(p);
-	while (p)
-	{
-		cout << p->data << " ";
-		p = p->next;
-	}
-	cout << endl;
-}
