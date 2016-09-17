@@ -1,3 +1,4 @@
+/*匿名管道*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -41,4 +42,7 @@ int main(int argc, char *argv[])
         wait(NULL);           //等待子进程退出
         exit(0);
     }
-}.
+}
+
+
+/*命名管道*/
